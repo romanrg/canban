@@ -41,9 +41,35 @@
               (dragstart)="startCardTransition($event, card)"
               (dragleave)="startCardLeaveTransition($event, column._id, card._id)"
           >
-            <h3 class="card__title">{{card._id}}</h3>
+            <h3
+              class="card__title"
+              (click)="showCardForm()"
+              *ngIf="!isCardTitleFormVisible; else cardTitleForm"
+            >
+              {{card.title | titlecase}}
+            </h3>
+            <ng-template #cardTitleForm>
+              <div
+                class="header__card-input-container"
+              >
+                <input type="text"
+                       class="header__input"
+                       [formControl]="cardName"
+                       placeholder="{{card.title}}..."
+                       (keypress)="setCardName(column._id, card._id ,$event)"
+                >
+                <button
+                  type="submit"
+                  (click)="setColumnName(column._id)"
+                  class="submit-btn"
+                >Change</button>
+              </div>
+            </ng-template>
             <p class="timestamp"
-            [ngStyle]="card.isCompleted? {'text-decoration':'line-through'}:{'text-decoration':'none'}">{{card.timestamp | date:'yyyy/MM/dd, HH:mm'}}</p>
+            [ngStyle]="card.isCompleted? {'text-decoration':'line-through'}:{'text-decoration':'none'}"
+            >
+              {{card.timestamp | date:'yyyy/MM/dd, HH:mm'}}
+            </p>
           </li>
         </ul>
         <div

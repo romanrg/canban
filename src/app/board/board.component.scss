@@ -17,6 +17,7 @@
   flex-wrap: nowrap;
   list-style: none;
   justify-content: space-evenly;
+  padding: 0;
 }
 .column {
   display: flex;
@@ -164,4 +165,7 @@
   flex-grow: 1;
   padding: 1rem;
   font: inherit;
+}
+.header__card-input-container {
+  display: flex;
 }
