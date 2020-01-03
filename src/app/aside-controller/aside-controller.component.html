@@ -1,0 +1,29 @@
+<div class="container">
+  <aside class="controller">
+    <section class="board-controller" draggable="true" (dragstart)="startDrag($event)">
+      <h2>New Column</h2>
+    </section>
+    <section class="cards-controller">
+      <ul class="cards__list">
+        <li class="card" draggable="true" (dragstart)="startDrag($event)">
+          <h3>New Card</h3>
+        </li>
+        <li class="card" draggable="true" (dragstart)="startDrag($event)">
+          <h3>New Card</h3>
+        </li>
+        <li class="card" draggable="true" (dragstart)="startDrag($event)">
+          <h3>New Card</h3>
+        </li>
+      </ul>
+    </section>
+    <section
+      class="block-controller"
+      draggable="true"
+      (dragstart)="startDrag($event)"
+    >
+      <h3>
+        Stop at 5
+      </h3>
+    </section>
+  </aside>
+</div>

@@ -1,0 +1,77 @@
+<div class="container">
+  <section class="board" (dragover)="dragOver($event)" (drop)="dropElement($event)">
+    <ul class="column__list">
+      <li class="column"
+
+          *ngFor="let column of columns"
+          (drop)="handleCardDrop($event, column._id)"
+          [class.dragged-over]="isDraggedOver"
+      >
+
+        <h2
+          class="column__header"
+          (click)="showChangeForm()"
+          *ngIf="!isShowChangeForm; else showForm"
+        >{{column.title | titlecase}}</h2>
+        <ng-template #showForm>
+          <div
+            class="header__input-container"
+          >
+            <input type="text"
+                   class="header__input"
+                   [formControl]="columnName"
+                   placeholder="{{column.title}}..."
+                   (keypress)="setColumnName(column._id, $event)"
+            >
+            <button
+              type="submit"
+              (click)="setColumnName(column._id)"
+              class="submit-btn"
+            >Change</button>
+          </div>
+        </ng-template>
+
+        <ul class="cards__list" [ngStyle]="
+          (column.cards.length > 3 )? {'overflow-y': 'scroll'} : {}
+        ">
+          <li class="card"
+              [ngStyle]="{'background': card.color}"
+              *ngFor="let card of column.cards"
+              draggable="true"
+              (dragstart)="startCardTransition($event, card)"
+              (dragleave)="startCardLeaveTransition($event, column._id, card._id)"
+          >
+            <h3 class="card__title">{{card._id}}</h3>
+            <p class="timestamp"
+            [ngStyle]="card.isCompleted? {'text-decoration':'line-through'}:{'text-decoration':'none'}">{{card.timestamp | date:'yyyy/MM/dd, HH:mm'}}</p>
+          </li>
+        </ul>
+        <div
+          *ngIf="column.stopAt"
+          class="stop"
+          [class.empty-space]="column.cards.length < column.stopAt"
+          [class.no-empty-space]="column.cards.length >= column.stopAt"
+        >
+          <span [class.invisible]="!isStopAtInputVisible"
+                (click)="changeStopAt()"
+          >
+            {{column.cards.length}} / {{column.stopAt}}
+          </span>
+          <div [class.invisible]="isStopAtInputVisible">
+              <label>
+                <input
+                  placeholder="Stop At:"
+                  class="stop-input"
+                  type="number"
+                  [formControl]="stopAtInputValue"
+                  (keypress)="setStop(column._id, $event)"
+                >
+              </label>
+
+          </div>
+        </div>
+      </li>
+    </ul>
+
+  </section>
+</div>
