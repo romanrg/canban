@@ -1,0 +1,25 @@
+<div class="stop__wrapper"
+  [class.empty-space]="stop > length" [class.no-empty-space]="stop <= length"
+>
+  <p class="stop__content"
+    *ngIf="!isFormShowed; else form"
+     (click)="showForm()"
+  >{{length}} / {{stop}}</p>
+  <ng-template #form>
+    <label>
+      <input
+        type="number"
+        [formControl]="stopAt"
+        class="stop__input"
+        placeholder="{{stopAt.value}}"
+      >
+    </label>
+    <button
+      (click)="change(stopAt.value)"
+      type="submit"
+      class="stop__submit-btn"
+    >
+      Submit
+    </button>
+  </ng-template>
+</div>

@@ -1,0 +1,54 @@
+.card__container {
+  flex-grow: 1;
+  display: flex;
+  padding: 1rem;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+
+.card__header {
+  color: black;
+  margin: 0;
+  overflow: hidden;
+  align-self: center;
+}
+
+.card__timestamp {
+  font-style: italic;
+  font-size: 0.75rem;
+  opacity: 0.8;
+  align-self: flex-start;
+  justify-self: flex-end;
+}
+
+.input-card__container {
+  display: flex;
+
+  label {
+    box-sizing: border-box;
+  }
+
+  .input-card__input {
+    width: 100%;
+    border: 0;
+    padding: 1rem;
+    font: inherit;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+  }
+
+  .input-card__submit-btn {
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font: inherit;
+    color: cornflowerblue;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}

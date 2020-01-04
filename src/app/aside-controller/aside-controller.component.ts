@@ -13,7 +13,7 @@ export class AsideControllerComponent implements OnInit {
   }
 
   startDrag($event: DragEvent) {
-    // ts-ignore
+    // @ts-ignore
     $event.dataTransfer.setData('text', $event.currentTarget.innerText);
   }
 }

@@ -1,0 +1,36 @@
+<div
+  class="card__container"
+  [ngStyle]="{'border': color}"
+>
+  <h2
+    class="card__header"
+    (click)="showTitleForm()"
+    *ngIf="!isTitleFormShowed; else titleForm"
+  >
+    {{card | cardTitle}}
+  </h2>
+  <ng-template #titleForm >
+    <div class="input-card__container">
+      <label>
+        <input
+          class="input-card__input"
+          type="text"
+          [formControl]="cardName"
+          placeholder="{{card.title}}..."
+          (keypress)="submitNewCardName($event)"
+        >
+      </label>
+      <button
+        class="input-card__submit-btn"
+        (click)="submitNewCardName(undefined)"
+      >
+        Submit
+      </button>
+    </div>
+  </ng-template>
+
+  <p class="card__timestamp">
+    {{card.timestamp | date:'yyyy/MM/dd, HH:mm'}}
+  </p>
+
+</div>

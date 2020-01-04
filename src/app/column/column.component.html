@@ -1,0 +1,59 @@
+<li
+  class="column"
+  (drop)="handleCardDrop($event, column._id)"
+  [class.dragged-over]="isDraggedOver"
+  (dragover)="handleDragOver($event)"
+  (dragleave)="toggleDrag(); removeCard()"
+
+>
+  <h2
+    class="column__header"
+    (click)="showTitleForm()"
+    *ngIf="!isTitleFormShowed; else titleForm"
+  >
+    {{column.title | titlecase}}
+  </h2>
+  <ng-template #titleForm >
+    <div class="input-header__container">
+      <label>
+        <input
+          class="input-header__input"
+          type="text"
+          [formControl]="columnName"
+          placeholder="{{column.title}}..."
+          (keypress)="submitNewColumnName($event)"
+        >
+      </label>
+      <button
+        class="input-header__submit-btn"
+        (click)="submitNewColumnName(undefined)"
+      >
+        Submit
+      </button>
+    </div>
+  </ng-template>
+  <ul
+    class="card__list"
+    [ngStyle]="column.cards.length > 3 ? {'overflow-y': 'scroll'} : {}"
+  >
+    <app-card
+      draggable="true"
+      (dragstart)="startCardDrag($event, card, column._id);  transferCard(card)"
+      *ngFor="let card of column.cards"
+      [card]="card"
+      class="card__item"
+
+    >
+    </app-card>
+
+
+  </ul>
+  <app-stop-at
+    (onChanged)="onChanged($event)"
+    *ngIf="column.stopAt"
+    [stop]="column.stopAt"
+    [length]="column.cards.length"
+    class="column__stop"
+  ></app-stop-at>
+
+</li>

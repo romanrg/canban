@@ -1,6 +1,7 @@
-<div class="container">
+<div class="container" >
   <section class="board" (dragover)="dragOver($event)" (drop)="dropElement($event)">
     <ul class="column__list">
+      <!--
       <li class="column"
 
           *ngFor="let column of columns"
@@ -97,7 +98,17 @@
           </div>
         </div>
       </li>
+      -->
+      <app-column
+        *ngFor="let column of columns"
+        [column]="column"
+        class="column"
+      ></app-column>
     </ul>
 
   </section>
+  <p >
+
+  </p>
 </div>
+

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {Column, ColumnServiceService} from '../services/column-service.service';
 import {Card, CardServiceService} from '../services/card-service.service';
 import {FormControl} from '@angular/forms';
@@ -13,6 +13,8 @@ import {trigger} from '@angular/animations';
 
 })
 export class BoardComponent implements OnInit {
+
+  transfer: Card;
 
   isShowChangeForm = false;
   isDraggedOver = false;
@@ -29,6 +31,10 @@ export class BoardComponent implements OnInit {
     private columnService: ColumnServiceService,
     private cardService: CardServiceService
   ) { }
+
+  cardTransfer(card: Card) {
+    console.log(card);
+  }
 
   ngOnInit() {
     this.columnService.createNewColumn();

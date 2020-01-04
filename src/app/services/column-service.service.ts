@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import {Card} from './card-service.service';
 
 export const generateId = () => '_' + Math.random().toString(36).substr(2, 9);
 
 export interface Column {
   title: string;
   _id: string;
-  cards: [];
+  cards: Card[];
   timestamp: Date;
   stopAt?: undefined | number;
 }
